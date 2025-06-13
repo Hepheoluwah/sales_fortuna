@@ -1,6 +1,18 @@
 import { useState } from "react";
 
-const testimonials = [
+
+type CompanyName = "Serene Living" | "Starlight Creations" | "Opulent Living Group";
+
+type Testimonial = {
+	company: CompanyName;
+	logo: string;
+	text: string;
+	name: string;
+	title: string;
+	avatar: string;
+};
+
+const testimonials: Testimonial[] = [
 	{
 		company: "Serene Living",
 		logo: "/images/serene_living.png",
@@ -27,14 +39,14 @@ const testimonials = [
 	},
 ];
 
-const logoDimensions = {
+const logoDimensions: Record<CompanyName, { width: string; height: string }> = {
 	"Serene Living": { width: "157px", height: "91px" },
 	"Starlight Creations": { width: "229px", height: "44px" },
 	"Opulent Living Group": { width: "272px", height: "62px" },
 };
 
 export default function Testimonials() {
-	const [index, setIndex] = useState(0);
+	const [index, setIndex] = useState<number>(0);
 
 	const prev = () =>
 		setIndex((index - 1 + testimonials.length) % testimonials.length);
@@ -62,12 +74,36 @@ export default function Testimonials() {
 					<button
 						onClick={prev}
 						className="absolute left-[-24px] z-10 rounded-full bg-white shadow-lg transition-all duration-200 flex items-center justify-center border border-gray-200 group"
-						style={{ width: '68px', height: '68px', top: '50%', transform: 'translateY(-50%)', left: '-2px', cursor: 'pointer' }}
+						style={{
+							width: "68px",
+							height: "68px",
+							top: "50%",
+							transform: "translateY(-50%)",
+							left: "-2px",
+							cursor: "pointer",
+						}}
 						aria-label="Previous testimonial"
 					>
-						<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="34" cy="34" r="33.5" fill="white" stroke="#D1CFCF" className="group-hover:stroke-[#6366f1] transition-colors duration-200"/>
-							<path d="M40.0781 19.5234L23.3438 32.9766L40.0547 46.6641L42.3516 44.1562L29.9063 32.8359L42.1875 22.125L40.0781 19.5234Z" fill="#707070" className="group-hover:fill-[#6366f1] transition-colors duration-200"/>
+						<svg
+							width="68"
+							height="68"
+							viewBox="0 0 68 68"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle
+								cx="34"
+								cy="34"
+								r="33.5"
+								fill="white"
+								stroke="#D1CFCF"
+								className="group-hover:stroke-[#6366f1] transition-colors duration-200"
+							/>
+							<path
+								d="M40.0781 19.5234L23.3438 32.9766L40.0547 46.6641L42.3516 44.1562L29.9063 32.8359L42.1875 22.125L40.0781 19.5234Z"
+								fill="#707070"
+								className="group-hover:fill-[#6366f1] transition-colors duration-200"
+							/>
 						</svg>
 					</button>
 
@@ -88,7 +124,7 @@ export default function Testimonials() {
 									justifyContent: "flex-start",
 									alignItems: "flex-start",
 									background: "#ffffff",
-									marginLeft: i !== 0 ? '24px' : 0,
+									marginLeft: i !== 0 ? "24px" : 0,
 								}}
 							>
 								<div style={{ marginBottom: "24px" }}>
@@ -103,7 +139,7 @@ export default function Testimonials() {
 												logoDimensions[t.company]?.height ||
 												"48px",
 											objectFit: "contain",
-                      paddingTop: "2rem",
+											paddingTop: "2rem",
 											marginBottom: "4px",
 											display: "block",
 										}}
@@ -114,9 +150,8 @@ export default function Testimonials() {
 									style={{
 										flex: 1,
 										marginBottom: "24px",
-										// width: "100%",
-                    width: "318px",
-                    height: "133px",
+										width: "318px",
+										height: "133px",
 									}}
 								>
 									<p
@@ -201,31 +236,64 @@ export default function Testimonials() {
 					<button
 						onClick={next}
 						className="absolute right-[-24px] z-10 rounded-full bg-white shadow-lg transition-all duration-200 flex items-center justify-center border border-gray-200 group"
-						style={{ width: '68px', height: '68px', top: '50%', transform: 'translateY(-50%)', right: '-2px', cursor: 'pointer' }}
+						style={{
+							width: "68px",
+							height: "68px",
+							top: "50%",
+							transform: "translateY(-50%)",
+							right: "-2px",
+							cursor: "pointer",
+						}}
 						aria-label="Next testimonial"
 					>
-						<svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<circle cx="34" cy="34" r="33.5" transform="matrix(-1 0 0 1 68 0)" fill="white" stroke="#D1CFCF" className="group-hover:stroke-[#6366f1] transition-colors duration-200"/>
-							<path d="M27.9219 19.5234L44.6562 32.9766L27.9453 46.6641L25.6484 44.1562L38.0937 32.8359L25.8125 22.125L27.9219 19.5234Z" fill="#707070" className="group-hover:fill-[#6366f1] transition-colors duration-200"/>
+						<svg
+							width="68"
+							height="68"
+							viewBox="0 0 68 68"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<circle
+								cx="34"
+								cy="34"
+								r="33.5"
+								transform="matrix(-1 0 0 1 68 0)"
+								fill="white"
+								stroke="#D1CFCF"
+								className="group-hover:stroke-[#6366f1] transition-colors duration-200"
+							/>
+							<path
+								d="M27.9219 19.5234L44.6562 32.9766L27.9453 46.6641L25.6484 44.1562L38.0937 32.8359L25.8125 22.125L27.9219 19.5234Z"
+								fill="#707070"
+								className="group-hover:fill-[#6366f1] transition-colors duration-200"
+							/>
 						</svg>
 					</button>
 				</div>
 
 				{/* Dots navigation */}
-				<div style={{ display: 'flex', justifyContent: 'center', marginTop: '48px', gap: '16px', paddingBottom: '8px' }}>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						marginTop: "48px",
+						gap: "16px",
+						paddingBottom: "8px",
+					}}
+				>
 					{testimonials.map((_, i) => (
 						<button
 							key={i}
 							onClick={() => setIndex(i)}
 							style={{
-								width: '14px',
-								height: '14px',
-								borderRadius: '50%',
-								background: i === index ? '#111827' : '#d1d5db',
-								border: 'none',
-								transition: 'background 0.3s',
-								outline: 'none',
-								cursor: 'pointer',
+								width: "14px",
+								height: "14px",
+								borderRadius: "50%",
+								background: i === index ? "#111827" : "#d1d5db",
+								border: "none",
+								transition: "background 0.3s",
+								outline: "none",
+								cursor: "pointer",
 								padding: 0,
 							}}
 							aria-label={`Go to testimonial ${i + 1}`}
